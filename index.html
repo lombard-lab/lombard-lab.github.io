@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lombard数据集项目 | 音频视觉语音识别与视频伪造检测</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #1a252f;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .demo-section {
+            background-color: var(--light-color);
+        }
+        
+        .demo-item {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline-primary {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Lombard数据集</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">关于项目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tasks">任务介绍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">演示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#paper">论文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页大图 -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Lombard数据集项目</h1>
+            <p class="hero-subtitle">用于音频视觉语音识别与实时视频伪造检测的多模态数据集</p>
+            <div class="mt-5">
+                <a href="#tasks" class="btn btn-primary btn-lg me-3">探索项目</a>
+                <a href="#paper" class="btn btn-outline-light btn-lg">下载论文</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于项目 -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">关于项目</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-center mb-5">
+                        本项目开发了一个全新的Lombard效应数据集，专门用于音频视觉语音识别(AVSR)和实时视频伪造检测的研究。该数据集在嘈杂环境中采集，为多模态学习提供了丰富的视听资源。
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body feature-box">
+                            <i class="fas fa-database card-icon"></i>
+                            <h4>大规模数据集</h4>
+                            <p>包含超过1000小时的高质量视听数据，涵盖多种噪声环境和说话人。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body feature-box">
+                            <i class="fas fa-video card-icon"></i>
+                            <h4>多模态应用</h4>
+                            <p>同时支持音频视觉语音识别和视频伪造检测两大研究方向。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body feature-box">
+                            <i class="fas fa-chart-line card-icon"></i>
+                            <h4>性能优越</h4>
+                            <p>基于本数据集的模型在多项基准测试中达到了最先进的性能。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 任务介绍 -->
+    <section id="tasks" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">任务介绍</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">任务一：在线Lombard数据集用于AVSR</h3>
+                            <p>开发一个专门用于音频视觉语音识别(AVSR)的在线Lombard数据集，该数据集在多种噪声环境下采集，包含了Lombard效应下的语音和对应的视频。</p>
+                            <ul class="list-unstyled mt-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>包含100+小时的视听数据</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>覆盖10种不同的噪声环境</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>50+位不同说话人的数据</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>提供详细的音视频对齐标注</li>
+                            </ul>
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-primary">访问数据集</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">任务二：用于实时视频伪造检测的Lombard数据集</h3>
+                            <p>构建一个专门用于实时视频伪造检测的数据集，包含真实视频和多种伪造技术生成的视频，为开发高效的伪造检测算法提供训练和测试资源。</p>
+                            <ul class="list-unstyled mt-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>包含5种主流视频伪造技术</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>提供帧级和视频级的伪造标注</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>支持实时检测算法评估</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>包含多种光照和背景条件</li>
+                            </ul>
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-primary">访问数据集</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 演示部分 -->
+    <section id="demo" class="section-padding demo-section">
+        <div class="container">
+            <h2 class="section-title text-center">演示与结果</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="demo-item">
+                        <h4>AVSR 识别示例</h4>
+                        <p class="text-muted">展示在噪声环境下使用我们的数据集训练的AVSR模型的识别效果。</p>
+                        <div class="ratio ratio-16x9 bg-dark rounded mb-3">
+                            <!-- 视频占位 -->
+                            <div class="d-flex justify-content-center align-items-center h-100 text-white">
+                                <i class="fas fa-play-circle fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-outline-primary me-2">查看详情</a>
+                            <a href="#" class="btn btn-outline-primary">下载示例</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="demo-item">
+                        <h4>视频伪造检测示例</h4>
+                        <p class="text-muted">展示我们的伪造检测算法在真实和伪造视频上的检测效果。</p>
+                        <div class="ratio ratio-16x9 bg-dark rounded mb-3">
+                            <!-- 视频占位 -->
+                            <div class="d-flex justify-content-center align-items-center h-100 text-white">
+                                <i class="fas fa-play-circle fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-outline-primary me-2">查看详情</a>
+                            <a href="#" class="btn btn-outline-primary">下载示例</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h4 class="card-title text-center mb-4">性能对比</h4>
+                            <p class="text-center">我们的方法在多个基准测试中均取得了最优异的性能</p>
+                            <div class="table-responsive mt-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>方法</th>
+                                            <th>AVSR准确率(%)</th>
+                                            <th>伪造检测准确率(%)</th>
+                                            <th>实时性(FPS)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>基线方法</td>
+                                            <td>76.3</td>
+                                            <td>82.5</td>
+                                            <td>12.4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>现有最佳</td>
+                                            <td>84.7</td>
+                                            <td>89.2</td>
+                                            <td>18.6</td>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <td><strong>我们的方法</strong></td>
+                                            <td><strong>91.2</strong></td>
+                                            <td><strong>95.7</strong></td>
+                                            <td><strong>24.3</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 论文部分 -->
+    <section id="paper" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">论文与资源</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <h3 class="card-title mb-4">Lombard数据集：用于AVSR和视频伪造检测的多模态数据集</h3>
+                            <p class="card-text mb-4">本文提出了一个新颖的Lombard效应数据集，专门设计用于音频视觉语音识别和实时视频伪造检测任务。我们的数据集在多种噪声环境下采集，为多模态学习提供了丰富的资源。</p>
+                            
+                            <div class="mb-4">
+                                <h5>摘要</h5>
+                                <p class="text-muted">我们引入了一个大规模的多模态Lombard数据集，该数据集包含了在10种不同噪声环境下采集的1000+小时的视听数据。该数据集专门设计用于支持音频视觉语音识别(AVSR)和实时视频伪造检测的研究。我们提供了详细的基准测试结果，展示了基于我们数据集的模型在两项任务上的优越性能。</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5>引用本文</h5>
+                                <div class="bg-light p-3 rounded">
+                                    <code>
+                                        @article{anonymous2023lombard,<br>
+                                        &nbsp;&nbsp;title={Lombard数据集：用于AVSR和视频伪造检测的多模态数据集},<br>
+                                        &nbsp;&nbsp;author={匿名},<br>
+                                        &nbsp;&nbsp;journal={预印本},<br>
+                                        &nbsp;&nbsp;year={2023}<br>
+                                        }
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex flex-wrap gap-3 mt-4">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-download me-2"></i>下载论文PDF
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fas fa-code me-2"></i>获取代码
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fas fa-database me-2"></i>访问数据集
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-4">Lombard数据集项目</h4>
+                    <p>一个专门用于音频视觉语音识别和实时视频伪造检测研究的多模态数据集。</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">快速链接</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#home" class="mb-2">首页</a>
+                        <a href="#about" class="mb-2">关于项目</a>
+                        <a href="#tasks" class="mb-2">任务介绍</a>
+                        <a href="#demo" class="mb-2">演示</a>
+                        <a href="#paper">论文</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-4">资源</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#" class="mb-2">数据集下载</a>
+                        <a href="#" class="mb-2">代码仓库</a>
+                        <a href="#" class="mb-2">文档</a>
+                        <a href="#">基准测试</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-4">联系信息</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="mailto:contact@example.com" class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>contact@example.com
+                        </a>
+                        <a href="#" class="mb-2">
+                            <i class="fab fa-github me-2"></i>GitHub仓库
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Lombard数据集项目. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
