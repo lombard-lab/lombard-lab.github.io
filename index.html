@@ -3,10 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lombard Lab</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Lombard Lab - Video Understanding Research</title>
+    
+    <!-- Meta tags for social media and SEO -->
+    <meta name="description" content="Lombard Lab: Advancing computer vision research with focus on video understanding, action recognition and multimodal learning">
+    <meta property="og:title" content="Lombard Lab - Video Understanding Research"/>
+    <meta property="og:description" content="Cutting-edge computer vision research, datasets and publications in video analysis and understanding"/>
+    <meta property="og:url" content="https://lombard-lab.github.io"/>
+    <meta property="og:image" content="assets/images/banner.jpg" />
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta name="twitter:title" content="Lombard Lab - Video Understanding Research">
+    <meta name="twitter:description" content="Cutting-edge computer vision research, datasets and publications">
+    <meta name="twitter:image" content="assets/images/twitter-banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="keywords" content="computer vision, video understanding, action recognition, datasets, research">
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --text-color: #333;
+            --white: #ffffff;
+            --border-radius: 4px;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 15px;
+        }
+
+        .logo h1 {
+            margin-bottom: 0;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--light-gray);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark-gray);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .about {
+            background-color: var(--white);
+        }
+
+        .paper-abstract {
+            background-color: var(--light-gray);
+        }
+
+        .architecture {
+            background-color: var(--white);
+        }
+
+        .datasets {
+            background-color: var(--light-gray);
+        }
+
+        .papers {
+            background-color: var(--white);
+        }
+
+        /* Abstract Section */
+        .abstract-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .abstract-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Architecture Section */
+        .architecture-image {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .architecture-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Dataset Showcase */
+        .dataset-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dataset-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .dataset-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .dataset-video {
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .dataset-video video {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 1.5rem 1rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .play-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .play-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            flex: 1;
+            color: var(--white);
+        }
+
+        .video-title {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .video-duration {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .dataset-info {
+            padding: 1.5rem;
+        }
+
+        .dataset-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+
+        .dataset-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Papers Section */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .paper-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .paper-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .paper-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        footer h3, footer h4 {
+            color: var(--white);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--medium-gray);
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+            color: var(--medium-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0;
+            }
+            
+            nav a {
+                display: block;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .dataset-stats {
+                gap: 1rem;
+            }
+            
+            .dataset-actions {
+                flex-direction: column;
+            }
+            
+            .stat-value {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,10 +545,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="research.html">Research</a></li>
-                    <li><a href="papers.html">Papers</a></li>
-                    <li><a href="datasets.html">Datasets</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#abstract">Abstract</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#datasets">Datasets</a></li>
+                    <li><a href="#papers">Papers</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-toggle">
@@ -31,31 +561,84 @@
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h2>Advancing Computer Vision Research</h2>
-                <p>We develop innovative methods and datasets for video analysis and understanding</p>
-                <div class="hero-buttons">
-                    <a href="#datasets" class="btn">Explore Datasets</a>
-                    <a href="papers.html" class="btn btn-secondary">Browse Publications</a>
+                <h1>Temporal Transformer Networks for Video Understanding</h1>
+                <p class="is-size-5 mt-3">
+                    Jane Smith, John Doe, Alice Johnson, Robert Brown
+                </p>
+                <p class="is-size-6 has-text-grey">Lombard Lab, University of Research</p>
+                <p class="is-size-5 mt-3">
+                    Conference on Computer Vision and Pattern Recognition (CVPR) 2023
+                </p>
+                <br>
+                <div class="buttons is-centered">
+                    <a href="#" class="btn">
+                        <i class="fas fa-file-pdf"></i> Paper PDF
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> Code
+                    </a>
                 </div>
             </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
                 <h2>About Our Lab</h2>
-                <p>The Lombard Lab focuses on cutting-edge computer vision research, particularly in video analysis, action recognition, and multimodal learning. Our work combines theoretical advances with practical applications.</p>
+                <p>The Lombard Lab focuses on cutting-edge computer vision research, particularly in video analysis, action recognition, and multimodal learning. Our work combines theoretical advances with practical applications in real-world scenarios.</p>
+                <p>We develop innovative methods and datasets for video understanding, with a focus on temporal modeling, efficient architectures, and multimodal fusion techniques.</p>
             </div>
         </section>
 
-        <section id="datasets" class="featured-datasets">
+        <!-- Paper Abstract -->
+        <section id="abstract" class="paper-abstract">
             <div class="container">
-                <div class="section-header">
-                    <h2>Featured Datasets</h2>
-                    <p>Explore our collection of high-quality video datasets for computer vision research</p>
-                    <a href="datasets.html" class="btn btn-outline">View All Datasets</a>
+                <div class="abstract-content">
+                    <h2>Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Recent advances in video understanding have enabled significant progress in action recognition and temporal modeling, yet effectively capturing long-range dependencies in video sequences remains challenging. We introduce Temporal Transformer Networks (TTN), a novel architecture that efficiently models temporal dynamics in videos through a hierarchical attention mechanism.
+                        </p>
+                        <p>
+                            Our approach combines local temporal modeling with global context awareness, allowing the model to capture both fine-grained actions and long-term dependencies. We propose a multi-scale temporal representation that processes video at different granularities, enabling efficient computation while maintaining high accuracy.
+                        </p>
+                        <p>
+                            Extensive experiments on multiple benchmark datasets demonstrate that TTN significantly outperforms existing methods in action recognition, temporal localization, and video captioning tasks, while being computationally more efficient than previous transformer-based approaches.
+                        </p>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="architecture">
+            <div class="container">
+                <h2>Model Architecture</h2>
+                <div class="architecture-image">
+                    <!-- Placeholder for architecture diagram -->
+                    <div style="background-color: #f0f0f0; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <p style="color: #666;">Model Architecture Diagram</p>
+                    </div>
+                </div>
+                <div class="architecture-description">
+                    <p>Our Temporal Transformer Network consists of three main components:</p>
+                    <ul>
+                        <li><strong>Local Temporal Encoder:</strong> Processes short video segments to capture fine-grained temporal patterns</li>
+                        <li><strong>Hierarchical Attention Module:</strong> Combines local and global temporal information through multi-scale attention</li>
+                        <li><strong>Task-Specific Decoder:</strong> Generates predictions for various video understanding tasks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Datasets Section -->
+        <section id="datasets" class="datasets">
+            <div class="container">
+                <h2>Video Datasets</h2>
+                <p>We have curated and released several high-quality video datasets to advance research in video understanding. Below are our featured datasets with sample videos.</p>
                 
                 <div class="dataset-showcase">
                     <div class="dataset-item">
@@ -92,7 +675,7 @@
                                 </div>
                             </div>
                             <div class="dataset-actions">
-                                <a href="datasets.html#actionnet" class="btn btn-small">Details</a>
+                                <a href="#" class="btn btn-small">Details</a>
                                 <a href="#" class="btn btn-small btn-secondary">Download</a>
                             </div>
                         </div>
@@ -132,7 +715,7 @@
                                 </div>
                             </div>
                             <div class="dataset-actions">
-                                <a href="datasets.html#videodesc" class="btn btn-small">Details</a>
+                                <a href="#" class="btn btn-small">Details</a>
                                 <a href="#" class="btn btn-small btn-secondary">Download</a>
                             </div>
                         </div>
@@ -172,7 +755,7 @@
                                 </div>
                             </div>
                             <div class="dataset-actions">
-                                <a href="datasets.html#temporal" class="btn btn-small">Details</a>
+                                <a href="#" class="btn btn-small">Details</a>
                                 <a href="#" class="btn btn-small btn-secondary">Download</a>
                             </div>
                         </div>
@@ -181,32 +764,57 @@
             </div>
         </section>
 
-        <section class="highlights">
+        <!-- Papers Section -->
+        <section id="papers" class="papers">
             <div class="container">
-                <h2>Research Highlights</h2>
-                <div class="highlight-grid">
-                    <div class="highlight-item">
-                        <h3>Video Understanding</h3>
-                        <p>Developing models that understand temporal dynamics and context in video sequences.</p>
+                <h2>Publications</h2>
+                <p>Our research contributions to the computer vision community.</p>
+                
+                <div class="papers-grid">
+                    <div class="paper-item">
+                        <div class="paper-meta">
+                            <span>CVPR 2023</span>
+                            <span>2023</span>
+                        </div>
+                        <h3>Temporal Transformer Networks for Action Recognition</h3>
+                        <p>We introduce a novel transformer-based architecture that efficiently models long-range temporal dependencies in video sequences for improved action recognition.</p>
+                        <div class="paper-tags">
+                            <span class="tag">Action Recognition</span>
+                            <span class="tag">Transformers</span>
+                            <span class="tag">Video Understanding</span>
+                        </div>
+                        <a href="#" class="btn btn-small" style="margin-top: 1rem;">View Paper</a>
                     </div>
-                    <div class="highlight-item">
-                        <h3>Multimodal Learning</h3>
-                        <p>Integrating visual, audio, and textual information for richer understanding.</p>
-                    </div>
-                    <div class="highlight-item">
-                        <h3>Dataset Creation</h3>
-                        <p>Curating and releasing high-quality datasets to advance the research community.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="cta">
-            <div class="container">
-                <h2>Explore Our Work</h2>
-                <div class="cta-buttons">
-                    <a href="papers.html" class="btn btn-secondary">View Publications</a>
-                    <a href="datasets.html" class="btn">Browse All Datasets</a>
+                    <div class="paper-item">
+                        <div class="paper-meta">
+                            <span>ECCV 2022</span>
+                            <span>2022</span>
+                        </div>
+                        <h3>Multi-Modal Video Captioning with Cross-Attention</h3>
+                        <p>A cross-attention mechanism that effectively fuses visual and audio information for generating more accurate and descriptive video captions.</p>
+                        <div class="paper-tags">
+                            <span class="tag">Video Captioning</span>
+                            <span class="tag">Multi-Modal</span>
+                            <span class="tag">Attention</span>
+                        </div>
+                        <a href="#" class="btn btn-small" style="margin-top: 1rem;">View Paper</a>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-meta">
+                            <span>NeurIPS 2022</span>
+                            <span>2022</span>
+                        </div>
+                        <h3>Weakly-Supervised Temporal Action Localization</h3>
+                        <p>We propose a novel approach for temporal action localization that requires only video-level labels during training, reducing annotation costs.</p>
+                        <div class="paper-tags">
+                            <span class="tag">Action Localization</span>
+                            <span class="tag">Weak Supervision</span>
+                            <span class="tag">Temporal Modeling</span>
+                        </div>
+                        <a href="#" class="btn btn-small" style="margin-top: 1rem;">View Paper</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -222,9 +830,11 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="research.html">Research</a></li>
-                        <li><a href="papers.html">Publications</a></li>
-                        <li><a href="datasets.html">Datasets</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#abstract">Abstract</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#datasets">Datasets</a></li>
+                        <li><a href="#papers">Publications</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -239,6 +849,94 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Video player functionality
+            const playButtons = document.querySelectorAll('.play-btn');
+            
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video');
+                    const video = document.getElementById(videoId);
+                    const icon = this.querySelector('i');
+                    
+                    if (video.paused) {
+                        video.play();
+                        icon.classList.remove('fa-play');
+                        icon.classList.add('fa-pause');
+                    } else {
+                        video.pause();
+                        icon.classList.remove('fa-pause');
+                        icon.classList.add('fa-play');
+                    }
+                });
+            });
+            
+            // Update play button when video ends
+            const videos = document.querySelectorAll('.dataset-video video');
+            
+            videos.forEach(video => {
+                video.addEventListener('ended', function() {
+                    const button = this.closest('.dataset-video').querySelector('.play-btn');
+                    const icon = button.querySelector('i');
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                });
+                
+                // Show controls on hover
+                const videoContainer = video.closest('.dataset-video');
+                const controls = videoContainer.querySelector('.video-controls');
+                
+                videoContainer.addEventListener('mouseenter', function() {
+                    controls.style.opacity = '1';
+                });
+                
+                videoContainer.addEventListener('mouseleave', function() {
+                    // Only hide controls if video is not playing
+                    if (video.paused) {
+                        controls.style.opacity = '0.8';
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
