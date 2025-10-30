@@ -1,0 +1,205 @@
+/* 在原有CSS基础上添加以下样式 */
+
+/* Hero Section 按钮组 */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* 轮廓按钮样式 */
+.btn-outline {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+/* 小按钮样式 */
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* 特色数据集部分 */
+.featured-datasets {
+    background-color: var(--white);
+    padding: 5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    color: var(--dark-gray);
+}
+
+/* 数据集展示布局 */
+.dataset-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.dataset-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.dataset-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 视频容器 */
+.dataset-video {
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.dataset-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+/* 视频控制条 */
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 1.5rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.play-btn {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.play-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.video-info {
+    flex: 1;
+    color: var(--white);
+}
+
+.video-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.video-duration {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* 数据集信息 */
+.dataset-info {
+    padding: 1.5rem;
+}
+
+.dataset-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--medium-gray);
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+    margin-top: 0.3rem;
+}
+
+.dataset-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 968px) {
+    .dataset-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .dataset-video {
+        order: 1;
+    }
+    
+    .dataset-info {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .dataset-stats {
+        gap: 1rem;
+    }
+    
+    .dataset-actions {
+        flex-direction: column;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+}

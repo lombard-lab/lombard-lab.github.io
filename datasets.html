@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datasets - Lombard Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Lombard Lab</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="papers.html">Papers</a></li>
+                    <li><a href="datasets.html" class="active">Datasets</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Datasets</h1>
+                <p>High-quality video datasets for advancing computer vision research</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container">
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search datasets...">
+                    </div>
+                    <div class="filter-options">
+                        <select>
+                            <option value="all">All Categories</option>
+                            <option value="action">Action Recognition</option>
+                            <option value="captioning">Video Captioning</option>
+                            <option value="localization">Temporal Localization</option>
+                            <option value="forecasting">Video Forecasting</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card dataset-card" data-id="1" data-category="action">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span>Action Recognition</span>
+                            </div>
+                            <h3>ActionNet-200</h3>
+                            <p>A large-scale dataset containing 200 human action classes with over 50,000 video clips collected from diverse real-world scenarios.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">50K+</div>
+                                    <div class="stat-label">Videos</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">200</div>
+                                    <div class="stat-label">Classes</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">2.5TB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Human Actions</span>
+                                <span class="tag">Diverse Scenarios</span>
+                                <span class="tag">High Resolution</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="card dataset-card" data-id="2" data-category="captioning">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2022</span>
+                                <span>Video Captioning</span>
+                            </div>
+                            <h3>VideoDesc</h3>
+                            <p>A comprehensive dataset for video description with 10,000 videos paired with multiple natural language descriptions per video.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">10K</div>
+                                    <div class="stat-label">Videos</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">50K</div>
+                                    <div class="stat-label">Descriptions</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">800GB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Natural Language</span>
+                                <span class="tag">Multiple Descriptions</span>
+                                <span class="tag">Diverse Content</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="card dataset-card" data-id="3" data-category="localization">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2022</span>
+                                <span>Temporal Localization</span>
+                            </div>
+                            <h3>TemporalActions</h3>
+                            <p>A dataset specifically designed for temporal action localization with precise temporal annotations for 80 action classes in long videos.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">5K</div>
+                                    <div class="stat-label">Videos</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">80</div>
+                                    <div class="stat-label">Classes</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">1.2TB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Temporal Annotations</span>
+                                <span class="tag">Long Videos</span>
+                                <span class="tag">Multiple Actions</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="card dataset-card" data-id="4" data-category="forecasting">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2021</span>
+                                <span>Video Forecasting</span>
+                            </div>
+                            <h3>FutureVisions</h3>
+                            <p>A dataset for video prediction and forecasting containing sequences with annotated future events and actions for anticipation tasks.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">8K</div>
+                                    <div class="stat-label">Sequences</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">30</div>
+                                    <div class="stat-label">Event Types</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">900GB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Future Events</span>
+                                <span class="tag">Anticipation</span>
+                                <span class="tag">Sequential Data</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="card dataset-card" data-id="5" data-category="action">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2021</span>
+                                <span>Action Recognition</span>
+                            </div>
+                            <h3>DailyActions</h3>
+                            <p>A dataset focusing on daily human activities with 120 action categories performed in home and office environments.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">25K</div>
+                                    <div class="stat-label">Videos</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">120</div>
+                                    <div class="stat-label">Classes</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">1.8TB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Daily Activities</span>
+                                <span class="tag">Indoor Scenes</span>
+                                <span class="tag">First-Person View</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+
+                    <div class="card dataset-card" data-id="6" data-category="captioning">
+                        <div class="card-img">
+                            [Dataset Preview Image]
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2020</span>
+                                <span>Video Captioning</span>
+                            </div>
+                            <h3>MultiModal-Video</h3>
+                            <p>A multi-modal dataset with synchronized video, audio, and text descriptions for studying cross-modal understanding and generation.</p>
+                            <div class="dataset-stats">
+                                <div class="stat">
+                                    <div class="stat-value">15K</div>
+                                    <div class="stat-label">Videos</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">3</div>
+                                    <div class="stat-label">Modalities</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">2.1TB</div>
+                                    <div class="stat-label">Size</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">Multi-Modal</span>
+                                <span class="tag">Audio-Visual</span>
+                                <span class="tag">Synchronized</span>
+                            </div>
+                            <a href="#" class="btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lombard Lab</h3>
+                    <p>Advancing computer vision through innovative research and open datasets.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="papers.html">Publications</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: contact@lombard-lab.org</p>
+                    <p>GitHub: <a href="https://github.com/lombard-lab">lombard-lab</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Lombard Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
